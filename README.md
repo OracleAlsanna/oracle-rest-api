@@ -128,6 +128,16 @@ All errors return JSON in the format `{ "detail": "message" }`.
 
 ---
 
+## Security
+
+- **Open redirect protection** — URLs pointing to localhost, private IP ranges (`10.x`, `172.16-31.x`, `192.168.x`), or link-local addresses are rejected at request time.
+- **URL length limit** — requests with a URL over 2048 characters are rejected.
+- **Parameterized queries** — all database access uses parameterized SQL; no string interpolation.
+- **CORS** — restricted to an explicit origin allowlist, configurable via the `ORACLE_ALLOWED_ORIGINS` environment variable (comma-separated).
+- **Security headers** — every response includes `X-Content-Type-Options`, `X-Frame-Options`, and `Referrer-Policy`.
+
+---
+
 ## Database
 
 Stored at `~/.oracle/db.sqlite3`. Shared with the Part 1 CLI tool — no migration needed.
